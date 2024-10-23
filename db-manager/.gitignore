@@ -1,0 +1,82 @@
+# Directories
+.che
+.mta
+.vscode
+.idea
+target
+bin
+node_modules
+dist
+reports
+*-deployer/resources
+
+
+# Usual ignore candidates
+*.class
+*.launch
+*.log
+*.bak
+*.iml
+.classpath
+
+# mta
+mta-op-*
+
+# node
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.mtar
+
+# Java
+hs_err_pid*
+*.ctxt
+.mtj.tmp/
+.history
+
+# Eclipse
+# managed-db-service/.settings
+**/.settings
+.project
+
+fioriHtmlRunner.html
+.*/fioriHtmlRunner.html
+visual_ext_index.html
+/webapp/visual_ext_index.html
+extended_runnable_file.html
+.*/extended_runnable_file.html
+sap-ui-cachebuster-info.json
+mock_preview_sapui5.html
+.*/mock_preview_sapui5.html
+UIAdaptation_index.html
+changes_preview.js
+AppVariant_index.html
+APIExternalProducer.js
+.*/APIExternalProducer.js
+node_modules
+/mts-section-ui/webapp/static_server.js
+
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
+/mta.jar
+/bak
+mta_archives/
+
+# OS
+desktop.ini
+*.lnk
+

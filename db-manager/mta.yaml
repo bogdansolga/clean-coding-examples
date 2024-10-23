@@ -1,0 +1,97 @@
+ID: augero_db_manager
+_schema-version: '3.1'
+parameters:
+  deploy_mode: html5-repo
+version: 1.2.4
+
+modules:
+  - name: augero-db-manager-service
+    type: java
+    path: augero-db-manager-service
+    parameters:
+      host: ${app-name}-${space}
+      memory: 1024M
+      buildpack: sap_java_buildpack
+    build-parameters:
+      builder: custom
+      commands:
+        - mvn clean
+        - mvn package
+        - mvn verify
+      timeout: 15m
+      build-result: target/*.jar
+    provides:
+      - name: augero-db-manager-service-url
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: augero-db-manager-service-uaa
+      - name: onboarding-credentialstore
+      - name: augero-db-manager-logging
+    properties:
+      SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
+      DBMANAGER_SPACEGUID: ${space-guid}
+      JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
+      JBP_CONFIG_SAP_MACHINE_JRE: '{ jre: { version: 11.+ } }'
+
+  - name: augero-db-manager-broker
+    type: nodejs
+    path: augero-db-manager-broker
+    parameters:
+      host: ${app-name}-${space}
+      memory: 128M
+      create-service-broker: true
+      service-broker-name: ${app-name}-${space}
+      service-broker-user: "BrokerUser"
+      service-broker-password: "SomeFancyBrokerPassword!"
+      service-broker-url: ${default-url}
+      service-broker-space-scoped: true
+    build-parameters:
+      ignore: [ ".gitignore", manifest.yml, "*.mtaext", "mta.*", "*.mtar", ".mta/" ]
+      timeout: 15m
+    properties:
+      SBF_CATALOG_SUFFIX: ${space}
+      SBF_ENABLE_AUDITLOG: false
+      SBF_BROKER_CREDENTIALS: >
+        {
+          "BrokerUser": "SomeFancyBrokerPassword!"
+        }
+      SBF_SERVICE_CONFIG: >
+        {
+          "augero-db-manager-service": {
+            "extend_credentials": {
+              "shared": {
+                "url":  "~{augero-db-manager-service-url/url}"
+              }
+            }
+          }
+        }
+    requires:
+      - name: augero-db-manager-service-url
+      - name: augero-db-manager-service-uaa
+
+resources:
+  - name: augero-db-manager-service-uaa
+    type: com.sap.xs.uaa
+    parameters:
+      service: xsuaa
+      service-plan: broker
+      shared: true
+      config:
+        xsappname: augero-db-manager-service-${space}
+        tenant-mode: "dedicated"
+        scopes:
+          - name: "uaa.user"
+        role-templates:
+          - name: "Token_Exchange"
+            scope-references:
+              - uaa.user
+
+  - name: onboarding-credentialstore
+    type: org.cloudfoundry.existing-service
+
+  - name: augero-db-manager-logging
+    type: application-logs
+    parameters:
+      service: application-logs
+      service-plan: lite

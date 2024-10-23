@@ -1,0 +1,77 @@
+### Eclipse/Maven/MTA ###
+.settings
+.classpath
+.project
+target
+bin
+.mta
+*.mtar
+*.tar.gz
+*-war
+*.jar
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+mta-op-*
+ 
+### Java ###
+hs_err_pid*
+*.ctxt
+.mtj.tmp/
+ 
+### VS Code ###
+.vscode
+ 
+ 
+### node ###
+node_modules
+dist
+build
+.openapi-generator
+reports
+*.launch
+ 
+ 
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.springBeans
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.settings/org.eclipse.m2e.core.prefs
+.settings/.jsdtscope
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+.dbeaver
+ 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+ 
+### Windows ###
+desktop.ini
+ 
+### macOS ###
+.DS_Store*
+/bin/
+ 
+### Linux ##
+*~
+/npm-debug.log
+ 
+## Web IDE ##
+.che
+/.user.project.json
+/.eclipse-pmd
+ 
+ 
+### common file types ###
+*.class
+*.log
+*.bak
+.flattened-pom.xml
+
+*.db

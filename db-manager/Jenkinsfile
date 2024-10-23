@@ -1,0 +1,218 @@
+pipeline {
+    agent { 
+        node{
+            // Label expression that defines which jenkins agents may execute builds of this project
+            label 'Prod'
+            customWorkspace "C:/jenkins/workspace/${env.JOB_NAME}"
+        }
+    }
+    libraries{
+        lib('scp-augero-pipeline-lib')
+    }
+    options{
+        timestamps()
+        timeout(time: 60, unit: "MINUTES")
+    }
+
+    parameters {
+        choice(
+            choices: [ 
+                 "Consider commit message", 
+                 "Publish release version", 
+                 "Don't publish a new version"
+            ],
+            description: 'Please select how to publish this library to Artifactory', 
+            name: 'userInput'
+        )
+    }
+
+    environment{
+        // Environment variables used during different stages
+        sonarqubeScannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+        REPOSITORY_NAME = 'augero-db-manager'
+        ORGANIZATION_NAME = 'Cerner Health Services Deutschland GmbH_DevelopmentPaaS'
+    }
+    
+    tools {
+        jdk 'SapMachine 11'
+    }
+    
+    stages{
+        stage('Execute Initial Checks') {
+            when {
+                expression {
+                    executeBuildPipeline() 
+                }
+                expression { 
+                    sanityChecksSuccessful() 
+                }
+            }
+
+            stages {
+
+                stage('Parallel stages: build & create space') {
+                    failFast true
+                    parallel {
+                        stage('Build') {
+                            steps {
+                                echo 'Build maven project ...'
+                                powershell 'mvn -f augero-db-manager-service clean verify -U'
+                                echo 'Build mtar ...'
+                                buildMbtMtar(workspace: env.WORKSPACE, mtarName: env.REPOSITORY_NAME)
+                            }
+                        }
+                        stage('Create space and user-provided-service for onboarding-credentialstore and assign roles') {
+                            when {
+                                expression {
+                                    BRANCH_NAME ==~ /^feature-[0-9]+.*$/
+                                }
+                                not {
+                                    expression {
+                                        spaceDoesExist(organization:env.ORGANIZATION_NAME, spaceName:BRANCH_NAME)
+                                    }
+                                }
+                            }
+                            steps {
+                                createSpace(
+                                    organization: env.ORGANIZATION_NAME,
+                                    spaceName: env.BRANCH_NAME,
+                                    memory: '4096MB',
+                                    prepareSpaceScript: 'cf create-user-provided-service onboarding-credentialstore -p credential-store-test-space.json'
+                                )
+
+                                assignRolesToSpace(
+                                    organization: env.ORGANIZATION_NAME,
+                                    spaceName: env.BRANCH_NAME,
+                                    users: env.SPACE_USERS
+                                )
+                            }
+
+                        }
+                    }
+                }
+
+                stage('Deploy for master') {
+                    when {
+                        branch 'master'
+                    }
+                    steps {
+                        deployMbtMtar(workspace: env.WORKSPACE, organizationName: env.ORGANIZATION_NAME, spaceName: 'test', mtarName: env.REPOSITORY_NAME)
+                    }
+                }
+
+                stage('Deploy for feature branch') {
+                    when {
+                        expression {
+                            BRANCH_NAME ==~ /^feature-[0-9]+.*$/
+                        }
+                    }
+                    steps {
+                        deployMbtMtar(workspace: env.WORKSPACE, organizationName: env.ORGANIZATION_NAME, spaceName: env.BRANCH_NAME, mtarName: env.REPOSITORY_NAME)
+                    }
+                }
+                
+                stage('Run API Tests on test space') {
+                    when {
+                        branch 'master'
+                    }
+                    steps {
+                        runApiTestsAndRecord(subscribedOrganizationName: env.ORGANIZATION_NAME, organizationName: env.ORGANIZATION_NAME, spaceName: 'test')
+                    }
+                }
+
+                stage('Run API Tests on feature branch') {
+                    when {
+                        expression {
+                            BRANCH_NAME ==~ /^feature-[0-9]+.*$/
+                        }
+                    }
+                    steps {
+                        runApiTestsAndRecord(subscribedOrganizationName: env.ORGANIZATION_NAME, organizationName: env.ORGANIZATION_NAME, spaceName: env.BRANCH_NAME)
+                    }
+                }
+
+                // This step triggers the script that copies the translation files from <application name> to SAP git
+                /* UNCOMMENT THIS STAGE AFTER THE COPY TEW ISSUE IS SOLVED ==================== */
+                /* Issue 242009: Build crashing at "Copy TEW" for shared-ui library             */
+                /* http://tfs.euip.devcerner.net:8080/tfs/ALM/ishmed/_workitems/edit/242009/    */
+                /*
+                stage('Copy TEW') {
+                    when { 
+                        branch 'master' 
+                    }
+                    steps {
+                        copyTEW(repositoryName: env.REPOSITORY_NAME)
+                    }
+                }
+                */
+
+               // This stage executes the SonarQube analyze
+                stage('SonarQube') {
+                    environment {
+                        sonarqubeScannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    }
+                    steps {
+                        executeSonarQubeScanBackend(
+                           sonarqubeScannerHome: env.sonarqubeScannerHome,
+                           sonarProjectName: "${env.REPOSITORY_NAME}",
+                           sonarProjectKey: "${env.REPOSITORY_NAME}",
+                           jacocoXmlReportPaths: './augero-db-manager-service/target/site/jacoco/jacoco.xml',
+                           junitReportPaths: './augero-db-manager-service/target/surefire-reports',
+                           filePathVersionInfo: './augero-db-manager-service/pom.xml'
+                        )
+                    }
+                }
+                // This stage waits for the QualityGate status
+                stage("Quality Gate") {
+                    steps {
+                        // This step waits for the SonarQube Quality Gate and fails the build if the Quality Gate status is not OK
+                        addSonarQubeQualityGateListener()
+                    }
+                }
+                // Release
+                stage("Release - promote to Artifactory and deploy to Operations systemtest") {
+                    when {
+                        expression {
+                            BRANCH_NAME ==~ /(release-(.*))/
+                        }
+                    }
+                    steps {
+                        promoteMtarToArtifactoryScpIntegration(userInput: params.userInput, mtarDirectory: 'CF/', mtarName: env.REPOSITORY_NAME)
+                        deployMtarToOperationsSystemtest(userInput: params.userInput, mtarName: env.REPOSITORY_NAME)
+                    }
+                }
+            }
+        }
+
+        stage('Notify and cleanup') {
+            steps {
+                echo 'Send emails and cleanup the workspace'
+            }
+        }
+    }
+
+    post{
+        success {
+            cleanWorkspace(workspace: env.WORKSPACE)
+        }
+        unsuccessful {
+            sendEmails()
+        }
+    }
+} 
+def runApiTestsAndRecord(Map params) {
+    if(params) {
+        if(!params.subscribedOrganizationName) {
+            log.ERROR("runApiTestsAndRecord", "The 'subscribedOrganizationName' parameter is missing")
+        }
+        if(!params.organizationName) {
+            log.ERROR("runApiTestsAndRecord", "The 'organizationName' parameter is missing")
+        }
+        if(!params.spaceName) {
+            log.ERROR("runApiTestsAndRecord", "The 'spaceName' parameter is missing")
+        }        
+    }
+    
+    powershell '''mvn -f augero-db-manager-apitest clean verify failsafe:integration-test -Dspace="''' + params.spaceName + '''" -DsubscribedOrganizationName="''' + params.subscribedOrganizationName + '''" -DorganizationName="''' + params.organizationName + '''"'''
+    junit '**/*/target/*-reports/**/*.xml'
+}
