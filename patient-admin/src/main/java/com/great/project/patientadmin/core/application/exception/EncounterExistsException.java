@@ -1,13 +1,11 @@
 package com.great.project.patientadmin.core.application.exception;
 
-import com.cerner.augero.core.exception.AugeroRuntimeException;
+import com.great.project.core.exception.AugeroRuntimeException;
 import com.great.project.patientadmin.core.application.eventhandler.EncounterCreatedEventHandler;
 
 /**
  * Class for {@link EncounterCreatedEventHandler} exception in case the encounter with the given identifier already
  * exists in the database, defined as unchecked exception.
- * 
- * @author Ardeleanu Dragos
  */
 public class EncounterExistsException extends AugeroRuntimeException {
 

@@ -1,12 +1,10 @@
 package com.great.project.patientadmin.core.application.exception;
 
-import com.cerner.augero.core.exception.AugeroRuntimeException;
+import com.great.project.core.exception.AugeroRuntimeException;
 
 /**
  * Class for exception in case of multiple results returned by secondary adapter , defined as
  * unchecked exception.
- *
- * @author Catalin Matache
  */
 public class ResultLimitException extends AugeroRuntimeException {
 

@@ -1,6 +1,6 @@
 package com.great.project.db.credentialstoreserviceapi.exception;
 
-import com.cerner.augero.core.exception.AugeroException;
+import com.great.project.core.exception.AugeroException;
 
 /**
  * Instantiate a new CredentialStoreException by message and/or reason.

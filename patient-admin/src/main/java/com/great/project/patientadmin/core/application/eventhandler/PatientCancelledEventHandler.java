@@ -1,15 +1,13 @@
 package com.great.project.patientadmin.core.application.eventhandler;
 
-import com.cerner.augero.common.events.EventCodes;
-import com.cerner.augero.common.events.domain.patientadmin.patient.PatientCancelledECCDomainEventV1;
+import com.great.project.common.events.EventCodes;
+import com.great.project.common.events.domain.patientadmin.patient.PatientCancelledECCDomainEventV1;
 import com.great.project.patientadmin.core.application.PatientAdminService;
 import com.great.project.patientadmin.core.domain.model.Patient;
 import org.springframework.stereotype.Component;
 
 /**
  * Implementation of {@link EventHandler} that handles the cancel of a Patient.
- *
- * @author Madalina Lupu
  */
 @Component
 public class PatientCancelledEventHandler implements EventHandler<PatientCancelledECCDomainEventV1> {

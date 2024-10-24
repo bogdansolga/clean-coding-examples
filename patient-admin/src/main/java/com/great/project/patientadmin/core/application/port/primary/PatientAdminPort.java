@@ -17,9 +17,6 @@ import com.great.project.patientadmin.core.domain.query.SubjectAndAccountQuery;
 /**
  * Primary port - the main API of the application. This is called by the primary adapters that allow you to change
  * objects, attributes, and relations in the core logic.
- * 
- * @author Emira Ziberi, <br>
- *         Gorasteanu Mihai
  */
 public interface PatientAdminPort {
     /**

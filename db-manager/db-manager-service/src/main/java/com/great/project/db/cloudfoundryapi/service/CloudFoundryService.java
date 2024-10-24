@@ -27,8 +27,6 @@ import com.google.json.JsonSanitizer;
 
 /**
  * Offers Cloud Foundry interaction
- * 
- * @author Norbert Paukner <norbert.paukner@cerner.com>
  */
 @Service
 public class CloudFoundryService {

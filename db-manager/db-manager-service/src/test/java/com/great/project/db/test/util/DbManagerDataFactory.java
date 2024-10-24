@@ -11,8 +11,6 @@ import com.great.project.db.db.manager.entity.SchemaMetadata;
 
 /**
  * Class to create mock objects for SchemaCredentials, CreateTenantSchemaRequestDto, DatabaseCredentials
- * 
- * @author Gabriela Maciac
  */
 public class DbManagerDataFactory {
 

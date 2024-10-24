@@ -1,6 +1,6 @@
 package com.great.project.patientadmin.core.application.exception;
 
-import com.cerner.augero.core.exception.AugeroRuntimeException;
+import com.great.project.core.exception.AugeroRuntimeException;
 
 /**
  * Exception in case of failure during event publishing

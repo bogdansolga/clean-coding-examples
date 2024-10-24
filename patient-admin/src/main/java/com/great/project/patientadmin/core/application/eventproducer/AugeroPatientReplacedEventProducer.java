@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.PatientReplacedAugeroEventDataV1;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.encounter.ChangedEncounterDataType;
-import com.cerner.augero.common.events.domain.patientadmin.patient.PatientReplacedAugeroDomainEventV1;
+import com.great.project.common.events.domain.patientadmin.eventdata.PatientReplacedAugeroEventDataV1;
+import com.great.project.common.events.domain.patientadmin.eventdata.encounter.ChangedEncounterDataType;
+import com.great.project.common.events.domain.patientadmin.patient.PatientReplacedAugeroDomainEventV1;
 import com.great.project.patientadmin.core.domain.model.Patient;
 import com.great.project.patientadmin.core.domain.model.encounter.Encounter;
 import com.great.project.patientadmin.core.domain.model.patient.PatientReplaced;

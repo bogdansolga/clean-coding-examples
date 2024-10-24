@@ -1,11 +1,9 @@
 package com.great.project.patientadmin.core.application.port.primary;
 
-import com.cerner.augero.common.events.domain.DomainEvent;
+import com.great.project.common.events.domain.DomainEvent;
 
 /**
  * Primary port for handling incoming events
- * 
- * @author Gabriela Maciac, Catalin Matache
  */
 public interface PatientAdminEventPort {
 

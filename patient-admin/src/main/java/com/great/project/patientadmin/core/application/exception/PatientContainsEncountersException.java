@@ -1,15 +1,12 @@
 package com.great.project.patientadmin.core.application.exception;
 
-import com.cerner.augero.core.exception.AugeroRuntimeException;
+import com.great.project.core.exception.AugeroRuntimeException;
 import com.great.project.patientadmin.core.application.PatientAdminService;
 import com.great.project.patientadmin.core.domain.model.Patient;
 
 /**
  * Class for {@link PatientAdminService} exception in case of {@link Patient} contains encounters
- * 
- * @author Lung Alexandru
  */
-
 public class PatientContainsEncountersException extends AugeroRuntimeException {
 
     /**

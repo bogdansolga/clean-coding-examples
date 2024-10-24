@@ -9,8 +9,6 @@ import com.great.project.patientadmin.core.domain.model.identifier.Identifier;
 
 /**
  * Mapper class for Identifier and BasicIdentifier
- *
- * @author Catalin Matache
  */
 @Mapper
 public interface BasicIdentifierMapper {

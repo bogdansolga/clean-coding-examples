@@ -3,8 +3,8 @@ package com.great.project.patientadmin.core.application.eventproducer;
 import java.net.URI;
 import java.util.UUID;
 
-import com.cerner.augero.common.events.domain.AugeroEventDataV1;
-import com.cerner.augero.common.events.domain.patientadmin.encounter.EncounterUpdatedAugeroDomainEventV1;
+import com.great.project.common.events.domain.AugeroEventDataV1;
+import com.great.project.common.events.domain.patientadmin.encounter.EncounterUpdatedAugeroDomainEventV1;
 import com.great.project.patientadmin.core.domain.model.encounter.Encounter;
 
 import lombok.AccessLevel;

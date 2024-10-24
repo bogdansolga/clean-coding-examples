@@ -21,8 +21,8 @@ import com.great.project.db.db.manager.config.DbManagerConfig;
 import com.great.project.db.db.manager.dto.CreateTenantSchemaRequestDto;
 import com.great.project.db.db.manager.entity.SchemaCredentials;
 import com.great.project.db.db.manager.service.DbManagerService;
-import com.cerner.augero.resiliency.ResilienceOptions;
-import com.cerner.augero.resiliency.ResilienceWrapper;
+import com.great.project.resiliency.ResilienceOptions;
+import com.great.project.resiliency.ResilienceWrapper;
 import com.sap.cloud.sdk.cloudplatform.resilience.ResilienceRuntimeException;
 import com.sap.hcp.cf.logging.common.LogContext;
 
@@ -30,8 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * The controller that exposes the endpoint for the functionality provided by the DB Manager
- * 
- * @author Norbert Paukner <norbert.paukner@cerner.com>
  */
 @RestController
 @RequestMapping("/v1/tenants")

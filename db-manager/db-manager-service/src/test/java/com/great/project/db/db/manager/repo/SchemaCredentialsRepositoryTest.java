@@ -25,8 +25,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test {@link SchemaCredentialsRepository}
- * 
- * @author Gabriela Maciac
  */
 public class SchemaCredentialsRepositoryTest {
 

@@ -7,8 +7,6 @@ import com.great.project.patientadmin.core.domain.model.identifier.Identifier;
 
 /**
  * Secondary port that specifies FHIR Primary System (ECC) operations.
- *
- * @author Catalin Matache
  */
 public interface PrimarySystemPort {
     /**

@@ -13,7 +13,7 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.cerner.augero.core.i18n.I18nService;
+import com.great.project.core.i18n.I18nService;
 import com.great.project.patientadmin.core.domain.model.Age;
 import com.great.project.patientadmin.core.domain.model.Patient;
 

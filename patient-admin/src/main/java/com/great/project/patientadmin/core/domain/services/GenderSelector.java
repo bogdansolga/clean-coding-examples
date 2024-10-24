@@ -2,7 +2,7 @@ package com.great.project.patientadmin.core.domain.services;
 
 import java.util.Optional;
 
-import com.cerner.augero.core.i18n.I18nService;
+import com.great.project.core.i18n.I18nService;
 import com.great.project.patientadmin.core.domain.model.Gender;
 import com.great.project.patientadmin.core.domain.model.Patient;
 

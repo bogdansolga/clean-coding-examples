@@ -4,8 +4,6 @@ import java.util.Locale;
 
 /**
  * Secondary port for consuming the business configuration operation to determine the tenant specific language.
- * 
- * @author Gabriela Maciac
  */
 public interface BusinessConfigurationPort {
 

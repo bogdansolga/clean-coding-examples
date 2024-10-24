@@ -18,8 +18,6 @@ import com.great.project.patientadmin.core.domain.query.SubjectAndAccountQuery;
 
 /**
  * Implementation of {@link PatientAdminPort}
- * 
- * @author Gabriela Maciac
  */
 public class PatientAdminPortImpl implements PatientAdminPort {
 

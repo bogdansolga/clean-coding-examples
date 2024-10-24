@@ -17,9 +17,6 @@ import com.great.project.patientadmin.core.domain.query.SubjectAndAccountQuery;
 
 /**
  * Secondary port that specifies operations with PatientEntity - the business object.
- * 
- * @author Emira Ziberi, <br>
- *         Gorasteanu Mihai
  */
 public interface PatientRepositoryPort {
 

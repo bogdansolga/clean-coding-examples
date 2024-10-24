@@ -3,13 +3,12 @@ package com.great.project.patientadmin.core.application.eventproducer;
 import java.net.URI;
 import java.util.UUID;
 
-import com.cerner.augero.common.events.domain.AugeroEventDataV1;
-import com.cerner.augero.common.events.domain.patientadmin.patient.PatientCancelledAugeroDomainEventV1;
+import com.great.project.common.events.domain.AugeroEventDataV1;
+import com.great.project.common.events.domain.patientadmin.patient.PatientCancelledAugeroDomainEventV1;
 import com.great.project.patientadmin.core.domain.model.Patient;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
 
 /**
  * Class used to produce a {@link PatientCancelledAugeroDomainEventV1}

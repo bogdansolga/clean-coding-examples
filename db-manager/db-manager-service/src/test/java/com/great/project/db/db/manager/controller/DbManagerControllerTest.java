@@ -18,12 +18,10 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.great.project.db.db.manager.dto.CreateTenantSchemaRequestDto;
-import com.cerner.augero.resiliency.ResilienceWrapper;
+import com.great.project.resiliency.ResilienceWrapper;
 
 /**
  * Test {@link DbManagerController}
- * 
- * @author Gabriela Maciac
  */
 @ExtendWith(MockitoExtension.class)
 public class DbManagerControllerTest {

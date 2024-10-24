@@ -1,15 +1,13 @@
 package com.great.project.patientadmin.core.application.eventhandler;
 
-import com.cerner.augero.common.events.EventCodes;
-import com.cerner.augero.common.events.domain.patientadmin.encounter.EncounterCancelledECCDomainEventV1;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.encounter.EncounterECCEventDataV1;
+import com.great.project.common.events.EventCodes;
+import com.great.project.common.events.domain.patientadmin.encounter.EncounterCancelledECCDomainEventV1;
+import com.great.project.common.events.domain.patientadmin.eventdata.encounter.EncounterECCEventDataV1;
 import com.great.project.patientadmin.core.application.PatientAdminService;
 import org.springframework.stereotype.Component;
 
 /**
  * Implementation of {@link EventHandler} that handles the cancel of an Encounter.
- * 
- * @author Lung Alexandru
  */
 
 @Component

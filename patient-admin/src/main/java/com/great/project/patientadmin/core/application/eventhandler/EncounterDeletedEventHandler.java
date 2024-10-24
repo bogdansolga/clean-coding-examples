@@ -7,15 +7,13 @@ import com.great.project.patientadmin.core.domain.model.encounter.Encounter;
 import com.great.project.patientadmin.core.domain.model.identifier.Identifier;
 import org.springframework.stereotype.Component;
 
-import com.cerner.augero.common.events.EventCodes;
-import com.cerner.augero.common.events.domain.patientadmin.encounter.EncounterDeletedECCDomainEventV1;
+import com.great.project.common.events.EventCodes;
+import com.great.project.common.events.domain.patientadmin.encounter.EncounterDeletedECCDomainEventV1;
 
 import lombok.RequiredArgsConstructor;
 
 /**
  * Implementation of {@link EventHandler} that handles the deletion of an encounter.
- *
- * @author Catalin Matache
  */
 @Component
 @RequiredArgsConstructor

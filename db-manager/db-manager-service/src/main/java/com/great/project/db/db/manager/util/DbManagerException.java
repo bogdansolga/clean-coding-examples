@@ -1,11 +1,9 @@
 package com.great.project.db.db.manager.util;
 
-import com.cerner.augero.core.exception.AugeroRuntimeException;
+import com.great.project.core.exception.AugeroRuntimeException;
 
 /**
  * Instantiate a new DbManagerException by message and/or reason.
- * 
- * @author Andrei Maneasa
  */
 public class DbManagerException extends AugeroRuntimeException {
 

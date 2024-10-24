@@ -21,8 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class to pack and send the requests to Cloud Foundry API for the Credential Store
- * 
- * @author Norbert Paukner <norbert.paukner@cerner.com>
  */
 @Slf4j
 @Component

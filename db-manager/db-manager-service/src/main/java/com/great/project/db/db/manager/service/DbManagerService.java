@@ -202,16 +202,8 @@ public class DbManagerService {
             DatabaseCredentials databaseCredentials) {
         SchemaCredentials schemaCredentials = new SchemaCredentials();
 
-        SchemaMetadata schemaMetadata = new SchemaMetadata();
+        final SchemaMetadata schemaMetadata = getSchemaMetadata(request, databaseCredentials);
         schemaCredentials.setMetadata(schemaMetadata);
-        schemaMetadata.setTenantGuid(request.getTenantGuid());
-        schemaMetadata.setModule(request.getModule());
-        schemaMetadata.setSpace(request.getSpace());
-        schemaMetadata.setDatabaseId(databaseCredentials.getMetadata().getServiceInstanceGuid());
-        schemaMetadata.setDatabaseName(databaseCredentials.getMetadata().getServiceInstanceName());
-        schemaMetadata.setStatus(StatusEnum.CREATING.name());
-        schemaMetadata.setCreatedAt(LocalDateTime.now());
-        schemaMetadata.setSubscriptionCount(0L);
         schemaCredentials = schemaCredentialsRepository.save(schemaCredentials);
 
         schemaCredentials = cfUtil.createRealSchema(schemaCredentials);
@@ -224,6 +216,20 @@ public class DbManagerService {
         return schemaCredentials;
     }
 
+    private static SchemaMetadata getSchemaMetadata(CreateTenantSchemaRequestDto request, DatabaseCredentials databaseCredentials) {
+        SchemaMetadata schemaMetadata = new SchemaMetadata();
+        schemaMetadata.setTenantGuid(request.getTenantGuid());
+        schemaMetadata.setModule(request.getModule());
+        schemaMetadata.setSpace(request.getSpace());
+        final DatabaseMetadata metadata = databaseCredentials.getMetadata();
+        schemaMetadata.setDatabaseId(metadata.getServiceInstanceGuid());
+        schemaMetadata.setDatabaseName(metadata.getServiceInstanceName());
+        schemaMetadata.setStatus(StatusEnum.CREATING.name());
+        schemaMetadata.setCreatedAt(LocalDateTime.now());
+        schemaMetadata.setSubscriptionCount(0L);
+        return schemaMetadata;
+    }
+
     /**
      * Increases the database subscription count and saves the credentials
      * 
@@ -232,13 +238,13 @@ public class DbManagerService {
      */
     private DatabaseCredentials increaseDatabaseSubscriptionCountAndSaveCredentials(
             DatabaseCredentials databaseCredentials) {
-        databaseCredentials.getMetadata()
-                .setSubscriptionCount(databaseCredentials.getMetadata().getSubscriptionCount() + 1);
-        if (StatusEnum.MARKED_FOR_DELETION.name().equals(databaseCredentials.getMetadata().getStatus())) {
-            databaseCredentials.getMetadata().setStatus(StatusEnum.CREATED.name());
-            databaseCredentials.getMetadata().clearMarkedForDeletion();
+        final DatabaseMetadata metadata = databaseCredentials.getMetadata();
+        metadata.setSubscriptionCount(metadata.getSubscriptionCount() + 1);
+        if (StatusEnum.MARKED_FOR_DELETION.name().equals(metadata.getStatus())) {
+            metadata.setStatus(StatusEnum.CREATED.name());
+            metadata.clearMarkedForDeletion();
         }
-        databaseCredentials.getMetadata().setUpdatedAt(LocalDateTime.now());
+        metadata.setUpdatedAt(LocalDateTime.now());
         databaseCredentials = databaseCredentialsRepository.save(databaseCredentials);
         return databaseCredentials;
     }
@@ -252,15 +258,12 @@ public class DbManagerService {
     private DatabaseCredentials createDatabaseAndSaveCredentials(CreateTenantSchemaRequestDto request) {
         DatabaseCredentials databaseCredentials = new DatabaseCredentials();
 
-        DatabaseMetadata databaseMetadata = new DatabaseMetadata();
-        databaseCredentials.setMetadata(databaseMetadata);
-        databaseMetadata.setTenantGuid(request.getTenantGuid());
-        databaseMetadata.setStatus(StatusEnum.CREATING.name());
-        databaseMetadata.setCreatedAt(LocalDateTime.now());
-        databaseMetadata.setSubscriptionCount(0L);
+        final DatabaseMetadata databaseMetadata = getDatabaseMetadata(request);
         databaseCredentials = databaseCredentialsRepository.save(databaseCredentials);
+        Result result = new Result(databaseCredentials, databaseMetadata);
+        result.databaseCredentials().setMetadata(result.databaseMetadata());
 
-        databaseCredentials = cfUtil.createRealDatabase(databaseCredentials);
+        databaseCredentials = cfUtil.createRealDatabase(result.databaseCredentials());
 
         databaseMetadata = databaseCredentials.getMetadata();
         databaseMetadata.setStatus(StatusEnum.CREATED.name());
@@ -268,6 +271,18 @@ public class DbManagerService {
         databaseMetadata.setSubscriptionCount(1L);
         databaseCredentials = databaseCredentialsRepository.save(databaseCredentials);
         return databaseCredentials;
+    }
+
+    private static DatabaseMetadata getDatabaseMetadata(CreateTenantSchemaRequestDto request) {
+        DatabaseMetadata databaseMetadata = new DatabaseMetadata();
+        databaseMetadata.setTenantGuid(request.getTenantGuid());
+        databaseMetadata.setStatus(StatusEnum.CREATING.name());
+        databaseMetadata.setCreatedAt(LocalDateTime.now());
+        databaseMetadata.setSubscriptionCount(0L);
+        return databaseMetadata;
+    }
+
+    private record Result(DatabaseCredentials databaseCredentials, DatabaseMetadata databaseMetadata) {
     }
 
     /**

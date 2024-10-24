@@ -10,8 +10,6 @@ import com.great.project.db.credentialstoreserviceapi.util.RequestUtil;
 
 /**
  * Test {@link RequestUtil}
- * 
- * @author Andrei Maneasa
  */
 public class RequestUtilTest {
 

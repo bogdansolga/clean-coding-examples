@@ -6,18 +6,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.cerner.augero.core.annotation.EnableAugeroCoreUtil;
+import com.great.project.core.annotation.EnableAugeroCoreUtil;
 
 /**
  * DONE
- * 
- * @author George Nistor <george.nistor@cerner.com>
  */
 @EnableAugeroCoreUtil
 @EnableAugeroCredentialStoreService
 @EnableAugeroCloudFroundryService
 @SpringBootApplication
-@ComponentScan(basePackages = { "com.cerner.augero.resiliency", "com.cerner.augero.db.manager" })
+@ComponentScan(basePackages = { "com.great.project.resiliency", "com.great.project.db.manager" })
 public class Application {
     public static void main(String[] args) {
         final SpringApplication springApplication = new SpringApplication(Application.class);

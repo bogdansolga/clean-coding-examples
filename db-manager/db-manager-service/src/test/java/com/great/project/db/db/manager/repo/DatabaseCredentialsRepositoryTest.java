@@ -20,8 +20,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test {@link DatabaseCredentialsRepository}
- * 
- * @author Gabriela Maciac
  */
 public class DatabaseCredentialsRepositoryTest {
 

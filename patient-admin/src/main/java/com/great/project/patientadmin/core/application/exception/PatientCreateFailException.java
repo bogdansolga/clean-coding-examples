@@ -1,16 +1,13 @@
 package com.great.project.patientadmin.core.application.exception;
 
-import com.cerner.augero.core.exception.AugeroRuntimeException;
+import com.great.project.core.exception.AugeroRuntimeException;
 import com.great.project.patientadmin.core.application.PatientAdminService;
 import com.great.project.patientadmin.core.domain.model.Patient;
 
 /**
  * Class for {@link PatientAdminService} exception in case of {@link Patient} entity was not created , defined as
  * unchecked exception.
- * 
- * @author Teodor Samoila
  */
-
 public class PatientCreateFailException extends AugeroRuntimeException {
 
     /**

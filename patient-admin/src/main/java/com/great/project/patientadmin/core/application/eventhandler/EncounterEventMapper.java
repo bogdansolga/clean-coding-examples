@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.IdentifierEventDataType;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.ReferenceEventDataType;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.encounter.EncounterECCEventDataV1;
+import com.great.project.common.events.domain.patientadmin.eventdata.IdentifierEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.ReferenceEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.encounter.EncounterECCEventDataV1;
 import com.great.project.patientadmin.core.domain.model.Reference;
 import com.great.project.patientadmin.core.domain.model.encounter.ClassificationCoding;
 import com.great.project.patientadmin.core.domain.model.encounter.Encounter;
@@ -16,8 +16,6 @@ import com.great.project.patientadmin.core.domain.model.identifier.IdentifierCod
 
 /**
  * Utility class for mapping Encounter Event Data to internal Encounter model.
- * 
- * @author Andrei Maneasa
  */
 public class EncounterEventMapper {
 

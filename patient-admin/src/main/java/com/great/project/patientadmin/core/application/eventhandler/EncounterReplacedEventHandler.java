@@ -5,15 +5,13 @@ import java.util.UUID;
 import com.great.project.patientadmin.core.application.PatientAdminService;
 import org.springframework.stereotype.Component;
 
-import com.cerner.augero.common.events.EventCodes;
-import com.cerner.augero.common.events.domain.patientadmin.encounter.EncounterReplacedECCDomainEventV1;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.IdentifierEventDataType;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.encounter.EncounterECCEventDataV1;
+import com.great.project.common.events.EventCodes;
+import com.great.project.common.events.domain.patientadmin.encounter.EncounterReplacedECCDomainEventV1;
+import com.great.project.common.events.domain.patientadmin.eventdata.IdentifierEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.encounter.EncounterECCEventDataV1;
 
 /**
  * Implementation of {@link EventHandler} that handles the merge of an encounter.
- *
- * @author Catalin Matache
  */
 @Component
 public class EncounterReplacedEventHandler implements EventHandler<EncounterReplacedECCDomainEventV1> {

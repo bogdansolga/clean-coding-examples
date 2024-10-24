@@ -1,14 +1,12 @@
 package com.great.project.patientadmin.core.application.exception;
 
-import com.cerner.augero.core.exception.AugeroRuntimeException;
+import com.great.project.core.exception.AugeroRuntimeException;
 import com.great.project.patientadmin.core.application.PatientAdminService;
 import com.great.project.patientadmin.core.domain.model.identifier.Identifier;
 
 /**
  * Class for {@link PatientAdminService} exception in case multiple Golden {@link Identifier} entities were found ,
  * defined as unchecked exception.
- * 
- * @author Ardeleanu Dragos
  */
 public class GoldenIdentifierMultipleException extends AugeroRuntimeException {
 

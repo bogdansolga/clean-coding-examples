@@ -7,15 +7,13 @@ import com.great.project.patientadmin.core.domain.model.Patient;
 import com.great.project.patientadmin.core.domain.model.identifier.Identifier;
 import org.springframework.stereotype.Component;
 
-import com.cerner.augero.common.events.EventCodes;
-import com.cerner.augero.common.events.domain.patientadmin.patient.PatientDeletedECCDomainEventV1;
+import com.great.project.common.events.EventCodes;
+import com.great.project.common.events.domain.patientadmin.patient.PatientDeletedECCDomainEventV1;
 
 import lombok.RequiredArgsConstructor;
 
 /**
  * Implementation of {@link EventHandler} that handles the deletion of a patient.
- *
- * @author Lung Alexandru
  */
 
 @Component

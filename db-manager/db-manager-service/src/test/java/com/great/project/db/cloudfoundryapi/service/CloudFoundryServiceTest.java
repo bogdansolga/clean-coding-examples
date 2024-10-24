@@ -32,8 +32,6 @@ import com.great.project.db.db.manager.dto.ServiceInstanceCreationStatusDto;
 
 /**
  * Test {@link CloudFoundryService}
- * 
- * @author Andrei Maneasa
  */
 public class CloudFoundryServiceTest {
 

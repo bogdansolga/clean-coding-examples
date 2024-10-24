@@ -11,8 +11,6 @@ import com.great.project.db.credentialstoreserviceapi.dto.NewCredentialStoreEntr
 
 /**
  * Class to create mock DTOs for CredentialStoreEntriesDto, CredentialStoreEntryDto, NewCredentialStoreEntryDto
- * 
- * @author Gabriela Maciac
  */
 public class CredentialStoreEntriesDataFactory {
 

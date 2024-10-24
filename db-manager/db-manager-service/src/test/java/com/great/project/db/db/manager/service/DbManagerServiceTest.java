@@ -25,8 +25,6 @@ import com.great.project.db.db.manager.dto.CreateTenantSchemaRequestDto;
 
 /**
  * Test {@link DbManagerService}
- * 
- * @author Gabriela Maciac
  */
 public class DbManagerServiceTest {
 

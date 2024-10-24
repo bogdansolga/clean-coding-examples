@@ -1,11 +1,9 @@
 package com.great.project.db.cloudfoundryapi.exception;
 
-import com.cerner.augero.core.exception.AugeroException;
+import com.great.project.core.exception.AugeroException;
 
 /**
  * Instantiate CloudFoundryException by message and/or cause.
- * 
- * @author Gabriela Maciac
  */
 public class CloudFoundryException extends AugeroException {
 

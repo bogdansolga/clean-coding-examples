@@ -4,8 +4,8 @@ import java.net.URI;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.cerner.augero.common.events.domain.patientadmin.encounter.EncounterReplacedAugeroDomainEventV1;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.encounter.EncounterReplacedAugeroEventDataV1;
+import com.great.project.common.events.domain.patientadmin.encounter.EncounterReplacedAugeroDomainEventV1;
+import com.great.project.common.events.domain.patientadmin.eventdata.encounter.EncounterReplacedAugeroEventDataV1;
 import com.great.project.patientadmin.core.domain.model.encounter.Encounter;
 import com.great.project.patientadmin.core.domain.model.encounter.EncounterReplaced;
 

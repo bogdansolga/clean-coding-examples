@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test {@link ObjectMapperUtils}
- * 
- * @author Gabriela Maciac
  */
 public class ObjectMapperUtilsTest {
 

@@ -15,8 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * The repository that offers the necessary methods to save or retrieve credentials for a tenant
- * 
- * @author Norbert Paukner <norbert.paukner@cerner.com>
  */
 @Slf4j
 @Repository

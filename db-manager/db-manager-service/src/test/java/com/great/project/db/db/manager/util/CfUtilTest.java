@@ -29,8 +29,6 @@ import com.great.project.db.cloudfoundryapi.dto.UserPwdDto;
 
 /**
  * Test {@link CfUtil}
- * 
- * @author Gabriela Maciac
  */
 public class CfUtilTest {
 

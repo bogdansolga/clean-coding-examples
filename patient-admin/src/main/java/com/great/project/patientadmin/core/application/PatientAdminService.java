@@ -21,8 +21,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.IdentifierEventDataType;
-import com.cerner.augero.core.util.MessageTextProviderUtil;
+import com.great.project.common.events.domain.patientadmin.eventdata.IdentifierEventDataType;
+import com.great.project.core.util.MessageTextProviderUtil;
 import com.great.project.patientadmin.core.application.eventproducer.AugeroEncounterCancelledEventProducer;
 import com.great.project.patientadmin.core.application.eventproducer.AugeroEncounterCreatedEventProducer;
 import com.great.project.patientadmin.core.application.eventproducer.AugeroEncounterDeletedEventProducer;

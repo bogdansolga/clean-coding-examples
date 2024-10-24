@@ -7,8 +7,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * Object Mapper utility class
- * 
- * @author Andrei Maneasa
  */
 public class ObjectMapperUtils {
 

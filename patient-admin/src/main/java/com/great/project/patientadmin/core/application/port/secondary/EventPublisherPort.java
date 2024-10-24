@@ -1,11 +1,9 @@
 package com.great.project.patientadmin.core.application.port.secondary;
 
-import com.cerner.augero.common.events.domain.AugeroDomainEvent;
+import com.great.project.common.events.domain.AugeroDomainEvent;
 
 /**
  * Secondary port that specifies operations regarding events.
- *
- * @author Rares Nistor
  */
 public interface EventPublisherPort {
 

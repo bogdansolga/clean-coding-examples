@@ -19,8 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Repository to retrive the schema credentials from the Credential Store
- * 
- * @author Norbert Paukner <norbert.paukner@cerner.com>
  */
 @Slf4j
 @Repository

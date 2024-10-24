@@ -6,12 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.cerner.augero.common.events.domain.DomainEvent;
+import com.great.project.common.events.domain.DomainEvent;
 
 /**
  * Class for serving generic events.
- * 
- * @author Anca Mocanu, Catalin Matache
  */
 public class EventDispatcher {
 

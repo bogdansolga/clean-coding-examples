@@ -2,8 +2,8 @@ package com.great.project.db.db.manager.config;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
-import com.cerner.augero.security.CustomWebSecurityConfig;
-import com.cerner.augero.security.annotation.AugeroWebSecurityConfig;
+import com.great.project.security.CustomWebSecurityConfig;
+import com.great.project.security.annotation.AugeroWebSecurityConfig;
 
 @AugeroWebSecurityConfig
 public class DbManagerSecurityConfig implements CustomWebSecurityConfig {

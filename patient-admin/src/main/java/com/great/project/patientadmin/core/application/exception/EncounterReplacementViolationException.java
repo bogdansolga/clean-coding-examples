@@ -1,11 +1,9 @@
 package com.great.project.patientadmin.core.application.exception;
 
-import com.cerner.augero.core.exception.AugeroRuntimeException;
+import com.great.project.core.exception.AugeroRuntimeException;
 
 /**
  * Exception class in case of rule violations for Encounter Replacement
- *
- * @author Catalin Matache
  */
 public class EncounterReplacementViolationException extends AugeroRuntimeException {
 

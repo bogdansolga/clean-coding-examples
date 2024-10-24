@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.CodeableConceptEventDataType;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.CommunicationEventDataType;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.ContactEventDataType;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.ContactPointEventDataType;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.HumanNameEventDataType;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.IdentifierEventDataType;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.PatientECCEventDataV1;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.PersonBirthDateUnknownEventDataType;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.PersonEventData;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.ReferenceEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.CodeableConceptEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.CommunicationEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.ContactEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.ContactPointEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.HumanNameEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.IdentifierEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.PatientECCEventDataV1;
+import com.great.project.common.events.domain.patientadmin.eventdata.PersonBirthDateUnknownEventDataType;
+import com.great.project.common.events.domain.patientadmin.eventdata.PersonEventData;
+import com.great.project.common.events.domain.patientadmin.eventdata.ReferenceEventDataType;
 import com.great.project.patientadmin.core.domain.model.BirthDateAbsentCoding;
 import com.great.project.patientadmin.core.domain.model.CodeableConcept;
 import com.great.project.patientadmin.core.domain.model.Coding;
@@ -37,8 +37,6 @@ import com.great.project.patientadmin.core.domain.model.identifier.IdentifierCod
 
 /**
  * Utility class for mapping Patient Event Data to internal Patient model.
- * 
- * @author Andrei Maneasa
  */
 public class PatientEventMapper {
 

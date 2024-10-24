@@ -26,8 +26,6 @@ import com.great.project.db.test.util.CredentialStoreEntriesDataFactory;
 
 /**
  * Test {@link CredentialStoreService}
- * 
- * @author Gabriela Maciac
  */
 public class CredentialStoreServiceTest {
 

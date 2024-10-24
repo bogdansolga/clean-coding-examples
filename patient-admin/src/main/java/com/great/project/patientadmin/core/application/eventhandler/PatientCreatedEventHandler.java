@@ -14,15 +14,13 @@
 
 package com.great.project.patientadmin.core.application.eventhandler;
 
-import com.cerner.augero.common.events.EventCodes;
-import com.cerner.augero.common.events.domain.patientadmin.patient.PatientCreatedECCDomainEventV1;
+import com.great.project.common.events.EventCodes;
+import com.great.project.common.events.domain.patientadmin.patient.PatientCreatedECCDomainEventV1;
 import com.great.project.patientadmin.core.application.PatientAdminService;
 import org.springframework.stereotype.Component;
 
 /**
  * Implementation of {@link EventHandler} that handles the creation of a patient.
- * 
- * @author Gabriela Maciac, Andrei Maneasa
  */
 @Component
 public class PatientCreatedEventHandler implements EventHandler<PatientCreatedECCDomainEventV1> {

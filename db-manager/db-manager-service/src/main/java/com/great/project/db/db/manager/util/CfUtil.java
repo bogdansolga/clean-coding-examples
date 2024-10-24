@@ -30,8 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Utility class to manage Cloud Foundry API interaction
- * 
- * @author Norbert Paukner <norbert.paukner@cerner.com>
  */
 @Slf4j
 @Component
@@ -123,7 +121,6 @@ public class CfUtil {
      * Checks the database creation status. As the creation takes very long, it implements a countdown with a
      * granularity of half a minute.
      *
-     * @author George Nistor <george.nistor@cerner.com>
      * @param dbName
      *            the database instace name
      * @return true, if successful
@@ -182,7 +179,6 @@ public class CfUtil {
     /**
      * Actual creation of a HANA Cloud database service instance
      * 
-     * @author George Nistor <george.nistor@cerner.com>
      * @param entity
      *            parameters for the database to be created
      * @return void

@@ -14,16 +14,14 @@
 
 package com.great.project.patientadmin.core.application.eventhandler;
 
-import com.cerner.augero.common.events.EventCodes;
-import com.cerner.augero.common.events.domain.patientadmin.encounter.EncounterCreatedECCDomainEventV1;
-import com.cerner.augero.common.events.domain.patientadmin.eventdata.encounter.EncounterECCEventDataV1;
+import com.great.project.common.events.EventCodes;
+import com.great.project.common.events.domain.patientadmin.encounter.EncounterCreatedECCDomainEventV1;
+import com.great.project.common.events.domain.patientadmin.eventdata.encounter.EncounterECCEventDataV1;
 import com.great.project.patientadmin.core.application.PatientAdminService;
 import org.springframework.stereotype.Component;
 
 /**
  * Implementation of {@link EventHandler} that handles the creation of an encounter.
- *
- * @author Andrei Maneasa, Ardeleanu Dragos
  */
 @Component
 public class EncounterCreatedEventHandler implements EventHandler<EncounterCreatedECCDomainEventV1> {

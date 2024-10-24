@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.cerner.augero.core.util.VcapServicesUtil;
+import com.great.project.core.util.VcapServicesUtil;
 
 @Configuration
 public class CredentialStoreConfig {

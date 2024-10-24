@@ -9,8 +9,6 @@ import com.great.project.db.credentialstoreserviceapi.exception.CredentialStoreE
 
 /**
  * Test {@link ObjectMapperUtils}
- * 
- * @author Gabriela Maciac
  */
 public class ObjectMapperUtilsTest {
 

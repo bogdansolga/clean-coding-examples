@@ -1,12 +1,10 @@
 package com.great.project.patientadmin.core.application.eventhandler;
 
-import com.cerner.augero.common.events.domain.DomainEvent;
+import com.great.project.common.events.domain.DomainEvent;
 
 /**
  * This is a marker interface to identify an event handler. It provides
  * supported event code and method to process event
- * 
- * @author Andrei Maneasa, Anca Mocanu
  */
 public interface EventHandler<E extends DomainEvent<?>> {
 
